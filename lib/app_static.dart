@@ -12,7 +12,7 @@ class AppStatic{
   static const String rechargePath = "https://t4.ftcdn.net/jpg/02/97/48/53/360_F_297485383_FCnL4mz7KAIDJmnD8HtP6kX0KogKoort.jpg";
   static const String petrolPath = "https://media.istockphoto.com/id/1435777999/photo/petrol-splashing-out-of-pistol-isolated-on-white-background.webp?b=1&s=170667a&w=0&k=20&c=DWewwEeQ4kVtjsv_8WknZmp79i76OkgYqxuJ4PuqnOs=";
   static const String restroPath = "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2stcGYtcG9tLTEyNDIuanBn.jpg";
-  static const String paybill     = ""
+
 
   static const List<Map<String, dynamic>> categories = [
     {'id': 1, 'name': 'Travel', 'img': travelPath},
