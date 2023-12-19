@@ -1,77 +1,101 @@
+import 'package:flutter/material.dart';
+
 class AppStatic{
 
-  static List<Map<String, dynamic>> dummyExpense = [
+  static const String basePath = "NetworkImage";
 
-    {
-      "date": "Today",
-      "amt":"\$7.24",
-      "transactions":[
-        {
-          "title":"pets",
-          "des":"Treats",
-          "amt":"\$3.35",
-          "balance":"383.00",
-          "catImg":"https://shelray.net/wp-content/uploads/2018/08/happy-dog.png"
-        },
-        {
-          "title":"Snacks",
-          "des":"8:54AM",
-          "amt":"\$1.70",
-          "balance":"194.94",
-          "catImg":"https://thumbs.dreamstime.com/b/single-salted-cumin-cookies-jeera-cookies-single-salted-cumin-cookies-jeera-cookies-as-call-them-india-ideal-158813616.jpg"
-        },
-        {
-          "title":"Coffee",
-          "des":"8:37AM",
-          "amt":"\$2.19",
-          "balance":"250.50",
-          "catImg":"https://img.freepik.com/free-photo/fresh-coffee-steams-wooden-table-close-up-generative-ai_188544-8923.jpg"
-        },
-        {
-          "title":"Salary",
-          "des":"7:44AM",
-          "amt":"\$2,300.00",
-          "balance":"263,283.88",
-          "catImg":"https://cdn-icons-png.flaticon.com/512/5258/5258366.png"
-        }
-      ]
-    },
-    {
-      "date": "yesterday",
-      "amt":"\$53.94",
-      "transactions":[
-        {
-          "title":"Gifts",
-          "des":"jeff's birthday",
-          "atm":"\$39.75",
-          "balance":"4.550.00",
-          "catImg":"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAyL3JtNDY3YmF0Y2g1LWdpZnQtMDAyYi14LmpwZw.jpg"
-        },
-        {
-          "title":"Shopping",
-          "des":"with family",
-          "amt":"2000",
-          "balance":"3000",
-          "catImg":"https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074075.jpg"
-        },
+  static const String coffeePath = "https://t4.ftcdn.net/jpg/01/16/61/93/360_F_116619399_YA611bKNOW35ffK0OiyuaOcjAgXgKBui.jpg";
+  static const String travelPath = "https://t4.ftcdn.net/jpg/03/73/40/25/360_F_373402561_BzQGinkNOK3wf9QrmWvgpgc8X0MKyax0.jpg";
+  static const String snacksPath = "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  static const String shoppingPath = "https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074075.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1702857600&semt=sph";
+  static const String moviePath = "https://img.freepik.com/free-vector/cinema-realistic-poster-with-illuminated-bucket-popcorn-drink-3d-glasses-reel-tickets-blue-background-with-tapes-vector-illustration_1284-77070.jpg?w=740&t=st=1702917530~exp=1702918130~hmac=0ed89d2f4b0707acb445677847341e639285f11e427b9a671394342b4aa24d88";
+  static const String rechargePath = "https://t4.ftcdn.net/jpg/02/97/48/53/360_F_297485383_FCnL4mz7KAIDJmnD8HtP6kX0KogKoort.jpg";
+  static const String petrolPath = "https://media.istockphoto.com/id/1435777999/photo/petrol-splashing-out-of-pistol-isolated-on-white-background.webp?b=1&s=170667a&w=0&k=20&c=DWewwEeQ4kVtjsv_8WknZmp79i76OkgYqxuJ4PuqnOs=";
+  static const String restroPath = "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2stcGYtcG9tLTEyNDIuanBn.jpg";
+  static const String paybill     = ""
 
-
-      ]
-    },
-    {
-      "date": "5/12/2023",
-      "amt":"5000",
-      "transactions":[
-
-        {
-          "title":"petrol",
-          "des":"in my car",
-          "amt":"\$5.50",
-          "balance":"200.00",
-          "catImg":"https://img.freepik.com/premium-vector/gasoline-yellow-fuel-pump-nozzle-isolated-with-drop-oil-oil-industry-refuel-service-concept_4974-284.jpg"
-        }
-      ]
-    },
-    
+  static const List<Map<String, dynamic>> categories = [
+    {'id': 1, 'name': 'Travel', 'img': travelPath},
+    {'id': 2, 'name': 'Coffee', 'img': coffeePath},
+    {'id': 3, 'name': 'Movie', 'img': moviePath},
+    {'id': 4, 'name': 'Petrol', 'img': petrolPath},
+    {'id': 5, 'name': 'Recharge', 'img': rechargePath},
+    {'id': 6, 'name': 'Shopping', 'img': shoppingPath},
+    {'id': 7, 'name': 'Snacks', 'img': snacksPath},
+    {'id': 8, 'name': 'Restaurant', 'img': restroPath},
   ];
+
+
+
+
+/*static List<ExpenseModel>dummyExpense =[
+      ExpenseModel(date: "12/12/23", amt: "20000", transaction: [
+
+        ExpenseDetails(title: "cofee", desc: "family", amt: "500", balance: "15000",
+     catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+   ],
+
+
+
+      ),
+
+     ExpenseModel(date: "13/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "tea", desc: "culliges", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+     ),
+
+     ExpenseModel(date: "14/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "movie", desc: "freinds", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+     ),
+     ExpenseModel(date: "15/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "patrol", desc: "bike ke liye", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+     ),
+     ExpenseModel(date: "16/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "recharge", desc: "papa", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+     ),
+     ExpenseModel(date: "17/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "mandir", desc: "bhagvan jee ke", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+
+     ),
+     ExpenseModel(date: "13/12/23", amt: "10000", transaction: [
+
+       ExpenseDetails(title: "bhai", desc: "pocket money", amt: "500", balance: "15000",
+           catImg: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400"),
+     ],
+
+
+
+     ),
+
+   ];*/
+
 }

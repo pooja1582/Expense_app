@@ -19,6 +19,7 @@ class LoginPage extends StatelessWidget {
                   height: 80,
                 ),
                TextField(decoration: InputDecoration(
+                 labelText: "Email",
                  border: OutlineInputBorder(
 
                  ),
@@ -29,6 +30,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 TextField(
                   decoration: InputDecoration(
+                    labelText: "password",
                     border: OutlineInputBorder(
                     ),
                     hintText: "password"
@@ -52,7 +54,7 @@ class LoginPage extends StatelessWidget {
                   child: Container(
                     height: 55,width: 300,
                     decoration: BoxDecoration(color: Colors.red,
-                      borderRadius: BorderRadius.circular(21)
+                      borderRadius: BorderRadius.circular(30)
                     ),
                     child: Center(child: Text("login",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),)),
                   ),
