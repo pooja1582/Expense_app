@@ -8,7 +8,7 @@ import '../add_expense.dart';
 import '../app_static.dart';
 import '../bloc/expense_bloc.dart';
 import '../models/day_wise_expense.dart';
-import '../models/expense_model.dart';
+
 
 class Allexpense extends StatefulWidget {
   const Allexpense({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class Allexpense extends StatefulWidget {
 class _AllexpenseState extends State<Allexpense> {
   List<DayWiseExpenseModel> dayWiseExpenses = [];
   double balance = 0.0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,22 +28,25 @@ class _AllexpenseState extends State<Allexpense> {
 
     BlocProvider.of<ExpenseBloc>(context).add(FetchAllExpenseEvent());
   }
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         title: Text("Expense"),
         backgroundColor: Colors.red,
+
       ),
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (ctx, state) {
           if (state is ExpenseLoaded) {
             print('${state.allExpenses.length}');
             filterExpenseDateWise(state.allExpenses.reversed.toList());
-            balance = state.allExpenses.last.balance.toDouble();
+            filterExpenseMonthWise(state.allExpenses.reversed.toList());
+            balance =
+            state.allExpenses.isNotEmpty ? state.allExpenses.last.balance
+                .toDouble() : 0.0;
             return Column(
               children: [
                 Expanded(child: Container(
@@ -54,36 +58,47 @@ class _AllexpenseState extends State<Allexpense> {
                   flex: 2,
                   child: ListView.builder(
                       itemCount: dayWiseExpenses.length,
-                      itemBuilder: (_, parentIndex){
+                      itemBuilder: (_, parentIndex) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
-                                  Text(dayWiseExpenses[parentIndex].date.toString()),
-                                  Text(dayWiseExpenses[parentIndex].amt.toString())
+                                  Text(dayWiseExpenses[parentIndex].date
+                                      .toString()),
+                                  Text(dayWiseExpenses[parentIndex].amt
+                                      .toString())
                                 ],
                               ),
                               ListView.builder(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
-                                  itemCount: dayWiseExpenses[parentIndex].transaction.length,
-                                  itemBuilder: (_, childIndex){
-
-                                    ExpenseModel eachTransaction = dayWiseExpenses[parentIndex].transaction[childIndex];
+                                  itemCount: dayWiseExpenses[parentIndex]
+                                      .transaction.length,
+                                  itemBuilder: (_, childIndex) {
+                                    ExpenseModel eachTransaction = dayWiseExpenses[parentIndex]
+                                        .transaction[childIndex];
 
                                     /*var catItem = AppStatic.categories.where((element) => element['id']==eachTransaction.catId).toList();*/
 
                                     return ListTile(
-                                      leading: Image.asset(AppStatic.categories[eachTransaction.catId]['img']),
+                                      leading: Image.network(
+                                          AppStatic.categories[eachTransaction
+                                              .catId]['img']),
                                       title: Text(eachTransaction.title),
                                       subtitle: Text(eachTransaction.desc),
                                       trailing: Column(
                                         children: [
-                                          Text(eachTransaction.amt.toString(), style: TextStyle(color: eachTransaction.eType==1 ? Colors.red : Colors.green),),
-                                          Text(eachTransaction.balance.toString())
+                                          Text(eachTransaction.amt.toString(),
+                                            style: TextStyle(
+                                                color: eachTransaction.eType ==
+                                                    1 ? Colors.red : Colors
+                                                    .green),),
+                                          Text(eachTransaction.balance
+                                              .toString())
                                         ],
                                       ),
                                     );
@@ -103,44 +118,46 @@ class _AllexpenseState extends State<Allexpense> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddExpense(mBalance: balance)));
+              context, MaterialPageRoute(
+              builder: (context) => AddExpense(mBalance: balance)));
         },
         child: Icon(Icons.add),
       ),
     );
   }
 
-  void filterExpenseDateWise(List<ExpenseModel> allExp){
+  void filterExpenseDateWise(List<ExpenseModel> allExp) {
     dayWiseExpenses.clear();
 
     List<String> arrUniqueDate = [];
 
-    for(ExpenseModel eachExp in allExp){
-      var dateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(eachExp.timeStamp));
+    for (ExpenseModel eachExp in allExp) {
+      var dateTime = DateTime.fromMillisecondsSinceEpoch(
+          int.parse(eachExp.timeStamp));
       var dateFormat = DateFormat.yMd();
       var formattedDate = dateFormat.format(dateTime);
       print(formattedDate);
 
-      if(!arrUniqueDate.contains(formattedDate)){
+      if (!arrUniqueDate.contains(formattedDate)) {
         arrUniqueDate.add(formattedDate);
       }
     }
 
     print(arrUniqueDate);
 
-    for(String eachDate in arrUniqueDate){
-
+    for (String eachDate in arrUniqueDate) {
       List<ExpenseModel> eachDateExpense = [];
       double amt = 0;
 
-      for(ExpenseModel eachExpense in allExp){
-        var dateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(eachExpense.timeStamp));
+      for (ExpenseModel eachExpense in allExp) {
+        var dateTime = DateTime.fromMillisecondsSinceEpoch(
+            int.parse(eachExpense.timeStamp));
         var dateFormat = DateFormat.yMd();
         var formattedDate = dateFormat.format(dateTime);
 
-        if(formattedDate==eachDate){
+        if (formattedDate == eachDate) {
           eachDateExpense.add(eachExpense);
-          if(eachExpense.eType==0){
+          if (eachExpense.eType == 0) {
             //debit
             amt -= eachExpense.amt;
           } else {
@@ -156,18 +173,31 @@ class _AllexpenseState extends State<Allexpense> {
       var dateFormat = DateFormat.yMd();
       var formattedDate = dateFormat.format(dateTime);
 
-      if(formattedDate==eachDate){
+      if (formattedDate == eachDate) {
         eachDate = "Today";
       }
 
-      ///for yesterday
+      /// for yesterday
+      var dateTimeYesterday = DateTime.now().subtract(Duration(days: 1));
+      var formattedDateYesterday = dateFormat.format(dateTimeYesterday);
 
-      dayWiseExpenses.add(DayWiseExpenseModel(date: eachDate, amt: amt.toString(), transaction: eachDateExpense));
+      if (formattedDateYesterday == eachDate) {
+        eachDate = "Yesterday";
+      }
 
+      dayWiseExpenses.add(DayWiseExpenseModel(
+          date: eachDate, amt: amt.toString(), transaction: eachDateExpense));
     }
-
-
-
   }
 
+  void filterExpenseMonthWise(List<ExpenseModel> allExp) {
+    dayWiseExpenses.clear();
+    for (ExpenseModel eachExp in allExp) {
+      var dateTime = DateTime.fromMillisecondsSinceEpoch(
+          int.parse(eachExp.timeStamp));
+      var dateFormat = DateFormat.yM();
+      var formattedDate = dateFormat.format(dateTime);
+      print("Month: $formattedDate");
+    }
+  }
 }

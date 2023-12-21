@@ -6,15 +6,19 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(scrollDirection: Axis.vertical,
-        child: Center(
-          child: Container(width: 350,
+      body: Container(width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+        image: DecorationImage(image: NetworkImage("https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/summer-background-abstract-background-wallpaper-use-for-presentation_HDDYoJOhMg_thumb.jpg"),fit: BoxFit.cover)
+      ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(scrollDirection: Axis.vertical,
             child: Column(
-              children: [SingleChildScrollView(scrollDirection: Axis.vertical,),
-                SizedBox(
+              children: [SizedBox(
                 height: 100,
               ),
-                Center(child: Text("Login",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),)),
+                Text("Login",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
                 SizedBox(
                   height: 80,
                 ),

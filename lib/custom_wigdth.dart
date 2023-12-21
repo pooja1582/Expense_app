@@ -10,7 +10,7 @@ class  Uihelper{
       decoration: InputDecoration(
           hintText: text,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(24),
+
 
           )
       ),

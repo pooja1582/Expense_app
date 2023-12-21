@@ -12,9 +12,9 @@ class AppStatic{
   static const String rechargePath = "https://t4.ftcdn.net/jpg/02/97/48/53/360_F_297485383_FCnL4mz7KAIDJmnD8HtP6kX0KogKoort.jpg";
   static const String petrolPath = "https://media.istockphoto.com/id/1435777999/photo/petrol-splashing-out-of-pistol-isolated-on-white-background.webp?b=1&s=170667a&w=0&k=20&c=DWewwEeQ4kVtjsv_8WknZmp79i76OkgYqxuJ4PuqnOs=";
   static const String restroPath = "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2stcGYtcG9tLTEyNDIuanBn.jpg";
+  static const String slone ="https://media.allure.com/photos/64c1ae3ac622f09fa23c69dd/16:9/w_1600,c_limit/haircut.jpg";
 
-
-  static const List<Map<String, dynamic>> categories = [
+      static const List<Map<String, dynamic>> categories = [
     {'id': 1, 'name': 'Travel', 'img': travelPath},
     {'id': 2, 'name': 'Coffee', 'img': coffeePath},
     {'id': 3, 'name': 'Movie', 'img': moviePath},
@@ -23,6 +23,7 @@ class AppStatic{
     {'id': 6, 'name': 'Shopping', 'img': shoppingPath},
     {'id': 7, 'name': 'Snacks', 'img': snacksPath},
     {'id': 8, 'name': 'Restaurant', 'img': restroPath},
+        {'id': 9, 'name': 'Slone', 'img': slone},
   ];
 
 
